@@ -1,6 +1,7 @@
 # Hashtagged
 
 [![Coverage Status](https://coveralls.io/repos/JamesChevalier/hashtagged/badge.png)](https://coveralls.io/r/JamesChevalier/hashtagged)
+[![Build Status](https://travis-ci.org/JamesChevalier/hashtagged.png?branch=master)](https://travis-ci.org/JamesChevalier/hashtagged)
 
 Hashtagged accepts a Twitter user name, and gives back a word cloud of that user's recent hashtags. You can use it at [http://hashtagged.herokuapp.com](http://hashtagged.herokuapp.com), or you can set it up yourself with the instructions below.
 
