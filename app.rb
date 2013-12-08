@@ -15,16 +15,12 @@ post '/hashtags' do
   end
 
   timeline     = client.user_timeline(@user_name, { count: 200, include_entities: true })
-  hashtag_list = []
-  timeline.each { |tweet| tweet.hashtags.each { |tag| hashtag_list << tag.text } unless tweet.hashtags.empty? }
-
-  @hashtags = []
-  hashtag_list.uniq.each do |tag|
-    @hashtags << { text: tag,
-                   weight: hashtag_list.grep(tag).size,
-                   link: { href: "https://twitter.com/search?q=%23#{tag}", target: '_blank', title: "#{tag}" } }
-  end
-  @hashtags = @hashtags.to_json
+  hashtag_list = timeline.map { |tweet| tweet.hashtags.map(&:text) }.flatten
+  @hashtags    = hashtag_list.uniq.map { |tag|
+    { text: tag,
+      weight: hashtag_list.count(tag),
+      link: { href: "https://twitter.com/search?q=%23#{tag}", target: '_blank', title: "#{tag}" } }
+  }.to_json
 
   erb :hashtags
 end
