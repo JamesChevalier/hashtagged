@@ -7,12 +7,12 @@ gem 'twitter'
 
 group :development do
   gem 'guard'
-  gem 'guard-shell'
+  gem 'guard-rspec'
   gem 'rb-fsevent'
 end
 
 group :test do
-  gem 'minitest'
-  gem 'rack-test', :require => 'rack/test'
+  gem 'rack-test'
   gem 'rake'
+  gem 'rspec'
 end

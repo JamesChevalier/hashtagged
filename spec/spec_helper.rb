@@ -2,13 +2,12 @@ require 'coveralls'
 Coveralls.wear!
 ENV['RACK_ENV'] = 'test'
 require_relative '../app'
-require 'minitest/autorun'
+require 'rspec'
 require 'rack/test'
 
-class MiniTest::Spec
+module RSpecMixin
   include Rack::Test::Methods
-
-  def app
-    Rack::Builder.parse_file(File.dirname(__FILE__) + '/../config.ru').first
-  end
+  def app() App end
 end
+
+RSpec.configure { |c| c.include RSpecMixin }
